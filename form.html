@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    input { margin: 5px; padding: 5px; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form onsubmit="return validateForm()">
+    <label>Name:</label><br>
+    <input type="text" id="name"><span id="nameError" class="error"></span><br>
+    <label>Email:</label><br>
+    <input type="text" id="email"><span id="emailError" class="error"></span><br>
+    <label>Password:</label><br>
+    <input type="password" id="password"><span id="passError" class="error"></span><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
+      let valid = true;
+
+      document.getElementById('nameError').innerText = "";
+      document.getElementById('emailError').innerText = "";
+      document.getElementById('passError').innerText = "";
+
+      if (name.trim() === "") {
+        document.getElementById('nameError').innerText = " Name required";
+        valid = false;
+      }
+      if (!email.includes("@")) {
+        document.getElementById('emailError').innerText = " Invalid email";
+        valid = false;
+      }
+      if (password.length < 6) {
+        document.getElementById('passError').innerText = " Min 6 characters";
+        valid = false;
+      }
+      return valid;
+    }
+  </script>
+</body>
+</html>
