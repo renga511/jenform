@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/renga511/form.git'
+                git 'https://github.com/renga511/jenform.git'
                 echo 'Code pulled successfully!'
             }
         }
