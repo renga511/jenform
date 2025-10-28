@@ -1,46 +1,28 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git 'pipeline {
-    agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/renga511/jenform.git'
-                echo 'Code pulled successfully!'
+                git url: 'https://github.com/renga511/jenform.git', branch: 'main'
             }
         }
-        stage('Build HTML') {
+
+        stage('Build') {
             steps {
-                bat 'dir'
+                echo 'Building the project...'
             }
         }
-        stage('Display Link') {
+
+        stage('Test') {
             steps {
-                script {
-                    echo "✅ Form Validation HTML ready!"
-                    echo "<a href='file:///C:/ProgramData/Jenkins/.jenkins/workspace/${env.JOB_NAME}/form-validation.html' target='_blank'>Open Form Validation</a>"
-                }
+                echo 'Running tests...'
             }
         }
-    }
-}'
-                echo 'Code pulled successfully!'
-            }
-        }
-        stage('Build HTML') {
+
+        stage('Deploy') {
             steps {
-                bat 'dir'
-            }
-        }
-        stage('Display Link') {
-            steps {
-                script {
-                    echo "✅ Form Validation HTML ready!"
-                    echo "<a href='file:///C:/ProgramData/Jenkins/.jenkins/workspace/${env.JOB_NAME}/form-validation.html' target='_blank'>Open Form Validation</a>"
-                }
+                echo 'Deploying application...'
             }
         }
     }
